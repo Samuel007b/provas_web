@@ -34,7 +34,7 @@ export function classificarIdade(idade) {
 // Exemplo: somarPares([1, 2, 3, 4, 5, 6]) → 12  (2 + 4 + 6)
 export function somarPares(numeros) {
   let soma = 0
-  for(const numero of numeros){
+  for(numero of numeros){
     if(numero % 2 === 0){
       soma += numero
     }
@@ -50,12 +50,12 @@ export function somarPares(numeros) {
 //          maiorNumero([-10, -3, -50]) → -3
 //          maiorNumero([]) → null
 export function maiorNumero(numeros) {
-  if(numeros.length === 0){
+  if(numeros.lenght === 0){
     return null
   }
   else{
     let maior = numeros[0]
-    for(const numero of numeros){
+    for(numero of numeros){
       if(numero > maior){
         maior = numero
       }
@@ -80,29 +80,41 @@ export function descreverTipos(valores) {
   let objects = 0
   let undefineds = 0
   valores.forEach((valor) => {
-    if((typeof valor) === 'string'){
+    if((typeof valor) === string){
       strings++
     }
-    else if((typeof valor) === 'number'){
+    else if((typeof valor) === number){
       numbers++
     }
-    else if((typeof valor) === 'boolean'){
+    else if((typeof valor) === boolean){
       booleans++
     }
-    else if((typeof valor) === 'object'){
+    else if((typeof valor) === object){
       objects++
     }
-    else if(typeof valor === 'undefined'){
+    else if(typeof valor === undefined){
       undefineds++
     }
   })
-  const resultado = {};
-  if (strings > 0) resultado.string = strings;
-  if (numbers > 0) resultado.number = numbers;
-  if (booleans > 0) resultado.boolean = booleans;
-  if (objects > 0) resultado.object = objects;
-  if (undefineds > 0) resultado.undefined = undefineds;
-  return resultado;
+  let texto = "{"
+  if(strings>0){
+    texto += `string: ${strings},`
+  }
+  if(numbers>0){
+    texto += `number: ${numbers},`
+  }
+  if(booleans>0){
+    texto += `boolean: ${booleans},`
+  }
+  if(objects>0){
+    texto += `object: ${objects},`
+  }
+  if(undefineds>0){
+    texto += `undefined: ${undefineds},`
+  }
+  texto.slice()
+  texto += "}"
+  return JSON.parse(texto)
 }
 
 // (1 PONTO) Questão 6 — extrairNomes
@@ -141,13 +153,13 @@ export function nomesDosAprovados(alunos) {
 //   ]) → 70   (média de 80 e 60)
 export function mediaDosAprovados(alunos) {
   const aprovados = alunos.filter((aluno) => aluno.nota>=60)
-  if(aprovados.length === 0){
+  if(aprovados.lenght === 0){
     return 0
   }
   else{
     let soma = 0
     aprovados.map((aprovado) => soma += aprovado.nota)
-    return soma / aprovados.length
+    return soma / aprovados.lenght
   }
 }
 
@@ -177,20 +189,20 @@ export function mesclarJSONs(textoA, textoB) {
     let texto3 = JSON.stringify(objeto1)
     let texto4 = JSON.stringify(objeto2)
     let item = ""
-    for(const letra of texto3){
+    for(letra of texto3){
       if(letra !== '{' && letra !== '}'){
         item += letra
       }
     }
     if(texto4 !== "{}"){
       item += ","
-      for(const letra of texto4){
+      for(letra of texto4){
         if(letra !== '{' && letra !== '}'){
           item += letra
         }
       }
     }
-    return JSON.stringify(JSON.parse(`{${item}}`))
+    return `{${item}}`
   }
   catch(error){
     return '{}'
@@ -223,7 +235,7 @@ export function dividir(a, b) {
 //          inverterTexto('') → ''
 export function inverterTexto(texto) {
   let inverso = ""
-  for(let i=texto.length; i>0; i--){
+  for(let i=texto.lenght; i>0; i--){
     inverso += texto[i-1]
   }
   return inverso
